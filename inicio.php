@@ -15,6 +15,8 @@ error_reporting(E_ALL);
     
     <title>Frozen: Panificados congelados.</title>
 </head>
+
+
 <body class="container-fluid">
     <div class="d-flex flex-column min-vh-100">
     <?php include 'Includes/navbar.php';?>
