@@ -10,7 +10,7 @@
     <title>Iniciar Sesión</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome CDN Iconos -->
+    <!-- FONTASWERONE ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-info-subtle min-vh-100 d-flex align-items-center justify-content-center">
@@ -19,10 +19,10 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
                 
-                <!-- Tarjeta de Login usando clases puras de Bootstrap -->
+                <!-- TARJETA LOGIN-->
                 <div class="card bg-white border-0 shadow-lg rounded-4 p-4">
                     
-                    <!-- Encabezado con Icono y Título -->
+                    <!-- ICONO Y TITULO -->
                     <div class="text-center mb-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-info bg-opacity-10 text-info rounded-circle p-3 mb-3">
                             <i class="fa-solid fa-user-lock fa-2x"></i>
@@ -31,10 +31,10 @@
                         <p class="text-secondary small mb-0">Bienvenido, por favor ingrese sus datos</p>
                     </div>
 
-                    <!-- Formulario -->
+                    <!-- FORM -->
                     <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
                         
-                        <!-- Input de Usuario -->
+                        <!-- INPUT USUARIO-->
                         <div class="mb-3">
                             <label for="username" class="form-label text-secondary fw-semibold small">Nombre de usuario</label>
                             <div class="input-group">
@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <!-- Input de Contraseña con opción de ver sin censura -->
+                        <!-- INPUT CONTRASEÑA-->
                         <div class="mb-4">
                             <label for="password" class="form-label text-secondary fw-semibold small">Contraseña</label>
                             <div class="input-group">
@@ -69,7 +69,7 @@
                                     class="btn btn-outline-secondary border-start-0" 
                                     type="button" 
                                     id="togglePassword" 
-                                    onclick="togglePasswordVisibility()"
+                                    onclick="alternarVisibilidadContraseña()"
                                     aria-label="Ver u ocultar contraseña"
                                 >
                                     <i class="fa-regular fa-eye" id="eyeIcon"></i>
@@ -77,26 +77,26 @@
                             </div>
                         </div>
 
-                        <!-- Botón Iniciar -->
+                        <!-- BOTON INICIAR -->
                         <div class="d-grid gap-2 mb-3">
                             <button type="submit" class="btn btn-info text-white fw-bold py-2 rounded-3 shadow-sm">
                                 Iniciar <i class="fa-solid fa-arrow-right ms-1"></i>
                             </button>
-                            <!-- Botón Registrarse -->
+                            <!-- BOTON REGISTRARSE-->
                             <button type="button" onclick="handleRegister()" class="btn btn-outline-info fw-semibold py-2 rounded-3">
                                 <i class="fa-solid fa-user-plus me-1"></i> Registrarse
                             </button>
                         </div>
                     </form>
 
-                    <!-- Enlace de contraseña olvidada -->
+                    <!-- ENLASE CONTRASEÑA OLVIDADA -->
                     <div class="text-center pt-3 border-top mt-3">
                         <a href="#forgot-password" onclick="handleForgotPassword(event)" class="text-info text-decoration-none fw-semibold small">
                             ¿Olvidó su contraseña?
                         </a>
                     </div>
 
-                    <!-- Alerta de Notificación para reemplazar alert() -->
+                    <!-- ALERTA (REEMPLAZA A ALERT) -->
                     <div id="notificationAlert" class="alert alert-dismissible fade show mt-3 mb-0 d-none" role="alert">
                         <span id="alertMessage"></span>
                     </div>
@@ -107,14 +107,14 @@
         </div>
     </main>
 
-    <!-- Bootstrap 5 JavaScript Bundle -->
+    <!-- BOOTSTRAP BUNDLE JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
 
     <script>
         /**
-         * Alterna la visibilidad de la contraseña en texto plano (sin censura) y enmascarado
+        ALTERNADOR DE VISIBILIDAD DE CONTRASEÑA
          */
-        function togglePasswordVisibility() {
+        function alternarVisibilidadContraseña() {
             const passwordInput = document.getElementById('password');
             const eyeIcon = document.getElementById('eyeIcon');
 
@@ -147,7 +147,7 @@
             const password = document.getElementById('password').value;
 
             if (!username || !password) {
-                showAlert('Por favor, complete todos los campos.', 'danger');
+                showAlert('campos inclompletos, compruebe por favor.', 'danger');
                 return;
             }
 
