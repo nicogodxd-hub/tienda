@@ -86,8 +86,8 @@
           </a>
           <!-- CONTENIDO DEL DESPLEGABLE-->
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Ingresar</a></li>
-            <li><a class="dropdown-item" href="#">Registrarme</a></li>
+            <li><a class="dropdown-item" href="login.php">Ingresar</a></li>
+            <li><a class="dropdown-item" href="Registrarse.php">Registrarme</a></li>
           </ul>
         </li>
       </ul>
