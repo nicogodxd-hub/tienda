@@ -89,8 +89,8 @@ error_reporting(E_ALL);
             </div>
 
         </div>
-        <!--SUBTITULO ENVIOS-->
 
+        <!--SUBTITULO ENVIOS-->
         <div class="m-5" style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1;">
             <span style="font-family: sans-serif; font-weight: bold; color: #000000; font-size: 1.5rem; text-transform: uppercase;">
                 ENVIO PROPIO
