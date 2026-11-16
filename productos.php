@@ -4,10 +4,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require_once './Database/bd_conexion.php';
 //seria el count de tipo en la base de datos
 $cantcol = 6;
 
-include './Database/bd_conexion.php';
 
 
 ?>
@@ -60,6 +60,30 @@ include './Database/bd_conexion.php';
                     productos
                 </span>
                 <?php
+                //$saludo = $saludo . ' nicoooooo';
+                //echo $saludo;
+
+                //CONSULTA A BASE DE DATOS
+                $sql = "SELECT id_producto, producto, cantidad FROM productos";
+                $resultado = $conex->query($sql);
+
+                // $imagen, $titulo, $descripcion, $precio, $stock
+
+                if ($resultado->num_rows > 0) {
+                    while ($fila = $resultado->fetch_assoc()) {
+                        echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] . "- cantidad: " . $fila["cantidad"] . "<br>";
+                    }
+                } else {
+                    echo "0 resultados";
+                }
+
+                if ($resultado->num_rows > 0) {
+                    while ($fila = $resultado->fetch_assoc()) {
+                        echo "producto: " . $fila["producto"];
+                    }
+                } else {
+                    echo "0 resultados";
+                }
 
 
                 ?>

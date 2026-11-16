@@ -1,5 +1,7 @@
 <?php
-/*
+//$saludo ="hola";
+//echo $saludo;
+
 
 class Conexion {
     private $host = 'localhost';
@@ -30,20 +32,10 @@ $conex = new mysqli("localhost", "root", "", "frozen");
 if ($conex->connect_error) {
     die("Error de conexión: " . $conex->connect_error);
 }
-*/
 
-/* Consulta SELECT
-$sql = "SELECT id_producto, producto, cantidad FROM productos";
-$resultado = $conex->query($sql);
 
-if ($resultado->num_rows > 0) {
-    while($fila = $resultado->fetch_assoc()) {
-        echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] ."- cantidad: ".$fila["cantidad"]."<br>";
-    }
-} else {
-    echo "0 resultados";
-}
-*/
+
+
 
 ?>
 
