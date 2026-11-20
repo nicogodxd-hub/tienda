@@ -44,46 +44,136 @@ $cantcol = 6;
     <div class="container">
         <div class="row bg-warning p-1 rounded-2">
 
-            <div class="row col-6 ">
-                <span style="font-family: sans-serif; font-size: 1.0rem; color: #4777a7; margin-top: 2px;">
-                    Categorias
-                </span>
-                <div class="col-6">producto1</div>
-                <div class="col-6">producto2</div>
-                <div class="col-6">producto3</div>
-                <div class="col-6">producto4</div>
+            <style>
+                .btn-cat-sm {
+                    width: 90px;
+                    /* Tamaño compacto (alto ~67px en 4:3) */
+                    max-width: 100%;
+                    /* Evita desbordes en pantallas muy angostas */
+                    aspect-ratio: 4 / 3;
+                }
+            </style>
 
+            <div class="row col-4 bg-success p-2 rounded-2 g-2">
+                <div class="col-12">
+                    <span style="font-family: sans-serif; font-size: 1.2rem; color: #4777a7; margin-top: 2px;">
+                        Categorias
+                    </span>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-4 overflow-hidden btn-cat-sm p-0">
+                        <img src="Img/categorias/cat-medialunas.png" alt="Medialunas" class="w-100 h-100 object-fit-cover d-block">
+                    </button>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-4 overflow-hidden btn-cat-sm p-0">
+                        <img src="Img/categorias/cat-medialunas.png" alt="Medialunas" class="w-100 h-100 object-fit-cover d-block">
+                    </button>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-4 overflow-hidden btn-cat-sm p-0">
+                        <img src="Img/categorias/cat-medialunas.png" alt="Medialunas" class="w-100 h-100 object-fit-cover d-block">
+                    </button>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-4 overflow-hidden btn-cat-sm p-0">
+                        <img src="Img/categorias/cat-medialunas.png" alt="Medialunas" class="w-100 h-100 object-fit-cover d-block">
+                    </button>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-4 overflow-hidden btn-cat-sm p-0">
+                        <img src="Img/categorias/cat-medialunas.png" alt="Medialunas" class="w-100 h-100 object-fit-cover d-block">
+                    </button>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-4 overflow-hidden btn-cat-sm p-0">
+                        <img src="Img/categorias/cat-medialunas.png" alt="Medialunas" class="w-100 h-100 object-fit-cover d-block">
+                    </button>
+                </div>
+
+                <div class="col-6 d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary rounded-4 overflow-hidden btn-cat-sm p-0">
+                        <img src="Img/categorias/cat-medialunas.png" alt="Medialunas" class="w-100 h-100 object-fit-cover d-block">
+                    </button>
+                </div>
             </div>
 
-            <div class="row col-6">
-                <span style="font-family: sans-serif; font-size: 1.0rem; color: #4777a7; margin-top: 2px;">
+
+            <div class="row col-8 bg-secondary p-1 rounded-2">
+                <span style="font-family: sans-serif; font-size: 1.2rem; color: #4777a7; margin-top: 2px;">
                     productos
                 </span>
                 <?php
                 //$saludo = $saludo . ' nicoooooo';
                 //echo $saludo;
 
+                function gen_tarjeta($img, $titulo, $desc)
+                {
+
+
+
+                    echo '
+                    <div class="card mb-3 col-6"style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src=' . $img . ' class="img-fluid rounded-start" alt="Imagen">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">' . $titulo . '</h5>
+                                <p class="card-text">' . $desc . '</p>
+                                <a href="//localhost/tienda/productos.php" class="btn btn-success">Añadir</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    ';
+                }
+
+                $imagen = '/tienda/Img/Inicio/productos/bolsa-medialunas2.jpeg';
+                $tittle = 'mi titulo';
+                $descrip = 'una descripcion cualquiera';
+
                 //CONSULTA A BASE DE DATOS
-                $sql = "SELECT id_producto, producto, cantidad FROM productos";
+                $sql = "SELECT id_producto, producto, stock FROM productos";
                 $resultado = $conex->query($sql);
 
                 // $imagen, $titulo, $descripcion, $precio, $stock
 
                 if ($resultado->num_rows > 0) {
                     while ($fila = $resultado->fetch_assoc()) {
-                        echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] . "- cantidad: " . $fila["cantidad"] . "<br>";
+                        # echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] . "- cantidad: " . $fila["stock"] . "<br>";
+                        $imagen = 'Img/productos/bolsa-medialunas2.jpeg';
+                        gen_tarjeta($imagen, $fila["producto"], $fila["stock"]);
                     }
                 } else {
                     echo "0 resultados";
                 }
 
-                if ($resultado->num_rows > 0) {
-                    while ($fila = $resultado->fetch_assoc()) {
-                        echo "producto: " . $fila["producto"];
-                    }
-                } else {
-                    echo "0 resultados";
-                }
+
+
+
+                #                $sqlcount = "SELECT COUNT(*) FROM productos";
+                #                $resultadocount = $conex->query($sqlcount);
+                #                $fila2 = $resultadocount->fetch_row();
+                #                echo $fila2[0];
+                #
+                #                for ($i = 1; $i <= $fila2[0]; $i++) {
+                #
+                #                    print gen_tarjeta($imagen, $fila2[0], $descrip);
+                #                }
+
+
+
+
 
 
                 ?>
