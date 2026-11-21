@@ -1,3 +1,4 @@
+
 CREATE DATABASE IF NOT EXISTS frozen
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
@@ -15,7 +16,7 @@ CREATE TABLE usuarios (
 
     correo VARCHAR(150) NOT NULL UNIQUE,
 
-    contrasena VARCHAR(255) NULL,
+    clave VARCHAR(255) NULL,
 
     CHECK (
         rol IN ('administrador', 'miembro', 'invitado')
@@ -28,6 +29,8 @@ CREATE TABLE productos (
 
     producto VARCHAR(100) NOT NULL,
 
+    descripcion VARCHAR(255) NULL,
+
     stock INT UNSIGNED NOT NULL DEFAULT 0,
 
     imagen VARCHAR(255),
@@ -38,7 +41,19 @@ CREATE TABLE productos (
 
     activo BOOLEAN NOT NULL DEFAULT TRUE,
 
-    CHECK (precio >= 0)
+    CHECK (precio >= 0),
+
+    CHECK (
+        tipo IN (
+            'tortas',
+            'medialunas',
+            'sacramentos',
+            'croissants',
+            'rejillas',
+            'roll',
+            'especiales'
+        )
+    )
 
 ) ENGINE = InnoDB;
 
