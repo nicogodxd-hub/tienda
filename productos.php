@@ -63,27 +63,77 @@ $cantcol = 6;
 
 
             <div class="col-4">
+
                 <div class="row bg-primary rounded">
+                    <!--
+                    <a href="#" class="col-4 btn btn-cat" data-cat="medialunas">
+                        <img src='/tienda/Img/categorias/cat-medialunas.png' class=" img-fluid" alt="img rota">
+                        medialunas
+                    </a>
+
+
+                    <a href="#" class="col-4 btn btn-cat" data-cat="tortas">
+                        <img src='/tienda/Img/categorias/cat-medialunas.png' class=" img-fluid" alt="img rota">
+                        tortas
+                    </a>
+                    -->
+                    <form action="" method="POST" class="col-12">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <button type="submit" name="accion" value="guardar" class="btn btn-light btn-cat w-100">
+                                    <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="Medialunas">
+                                    medialunas
+                                </button>
+                            </div>
+
+                            <div class="col-6">
+                                <button type="submit" name="categoria" value="tortas" class="btn btn-light btn-cat w-100">
+                                    <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="Tortas">
+                                    tortas
+                                </button>
+                            </div>
+
+                            <div class="col-6">
+                                <button type="submit" name="categoria" value="sacramentos" class="btn btn-light btn-cat w-100">
+                                    <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="sacramentos">
+                                    sacramentos
+                                </button>
+                            </div>
+
+                            <div class="col-6">
+                                <button type="submit" name="categoria" value="croissant" class="btn btn-light btn-cat w-100">
+                                    <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="croissant">
+                                    croissants
+                                </button>
+                            </div>
+
+                            <div class="col-6">
+                                <button type="submit" name="categoria" value="rejillas" class="btn btn-light btn-cat w-100">
+                                    <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="rejillas">
+                                    rejillas
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <?php
 
+                    $sql = "SELECT COUNT(*) AS total FROM productos";
+                    $resultado = mysqli_query($conex, $sql);
 
-                    function gen_categorias($imgCat, $tituloCat)
-                    {
-                        echo '
-                        <a href="" class="col-4 btn">
-                            <img src=' . $imgCat . ' class="img-fluid" alt="img rota">
-                            ' . $tituloCat . '
-                        </a>
-                        ';
+                    if ($resultado) {
+                        $fila = mysqli_fetch_assoc($resultado);
+                        echo 'cantidad: ' . $fila['total'];
+                    } else {
+                        echo "Error en la consulta: " . mysqli_error($conex);
                     }
 
-                    $categoria = '/tienda/Img/categorias/cat-medialunas2.jpeg';
-                    $titulazo = 'elfachipiola';
-                    gen_categorias($categoria, $titulazo);
 
-                    
                     ?>
+
+
+
+
 
                 </div>
             </div>
@@ -119,19 +169,33 @@ $cantcol = 6;
                     $descrip = 'una descripcion cualquiera';
 
                     //CONSULTA A BASE DE DATOS
-                    $sql = "SELECT id_producto, producto, stock FROM productos";
-                    $resultado = $conex->query($sql);
+
 
                     // $imagen, $titulo, $descripcion, $precio, $stock
-                    if ($resultado->num_rows > 0) {
-                        while ($fila = $resultado->fetch_assoc()) {
-                            # echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] . "- cantidad: " . $fila["stock"] . "<br>";
-                            $imagen = 'Img/productos/bolsa-medialunas2.jpeg';
-                            gen_tarjeta($imagen, $fila["producto"], $fila["stock"]);
+
+
+                    function  gen_categorias($conex)
+                    {
+
+                        $sql = "SELECT id_producto, producto, stock FROM productos";
+                        $resultado = $conex->query($sql);
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                #echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] . "- cantidad: " . $fila["stock"] . "<br>";
+
+                                gen_tarjeta('Img/productos/bolsa-medialunas2.jpeg', $fila["producto"], $fila["stock"]);
+                            }
+                        } else {
+                            echo "0 resultados";
                         }
-                    } else {
-                        echo "0 resultados";
+
+                        echo "Función ejecutada en la misma página.";
                     }
+
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'guardar') {
+                        gen_categorias($conex);
+                    }
+
 
                     ?>
 
@@ -150,8 +214,48 @@ $cantcol = 6;
         <?php include 'Includes/footer.php'; ?>
     </div>
 
-    <!--CONEXION JS BOOTSTRAP-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- CONEXIÓN JS BOOTSTRAP (solo carga la librería) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
+    <!-- TU SCRIPT PROPIO (sin atributo src) -->
+    <script>
+        //const cat_ml = document.getElementById('cat_ml');
+        //if (cat_ml) {
+        //    cat_ml.addEventListener('click', function(event) {
+        //        event.preventDefault();
+        //        mifuncion();
+        //    });
+        //}
+        //
+        //function mifuncion() {
+        //    alert('holanda');
+        //}
+        //
+        //const cat_tortas = document.getElementById('cat_tort')
+        //cat_tortas.addEventListener('click', alert('toltita'));
+
+        //document.addEventListener('DOMContentLoaded', function() {
+        //    const botones = document.querySelectorAll('.btn-cat')
+        //
+        //
+        //    botones.forEach(function(btn) {
+        //        btn.addEventListener('click', function(event) {
+        //            event.preventDefault();
+        //            const categoria = this.dataset.cat;
+        //
+        //            if (categoria === 'medialunas') {
+        //                alert('holanda');
+        //            } else if (categoria === 'tortas') {
+        //                alert('toltita');
+        //            } else {
+        //                alert('categoria: ' + categoria);
+        //            }
+        //        });
+        //
+        //    });
+        //});
+    </script>
 
 </body>
 
