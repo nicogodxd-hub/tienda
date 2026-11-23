@@ -80,35 +80,35 @@ $cantcol = 6;
                     <form action="" method="POST" class="col-12">
                         <div class="row g-2">
                             <div class="col-6">
-                                <button type="submit" name="accion" value="guardar" class="btn btn-light btn-cat w-100">
+                                <button type="submit" name="accion" value="medialunas" class="btn btn-light btn-cat w-100">
                                     <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="Medialunas">
                                     medialunas
                                 </button>
                             </div>
 
                             <div class="col-6">
-                                <button type="submit" name="categoria" value="tortas" class="btn btn-light btn-cat w-100">
+                                <button type="submit" name="accion" value="tortas" class="btn btn-light btn-cat w-100">
                                     <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="Tortas">
                                     tortas
                                 </button>
                             </div>
 
                             <div class="col-6">
-                                <button type="submit" name="categoria" value="sacramentos" class="btn btn-light btn-cat w-100">
+                                <button type="submit" name="accion" value="sacramentos" class="btn btn-light btn-cat w-100">
                                     <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="sacramentos">
                                     sacramentos
                                 </button>
                             </div>
 
                             <div class="col-6">
-                                <button type="submit" name="categoria" value="croissant" class="btn btn-light btn-cat w-100">
+                                <button type="submit" name="accion" value="croissants" class="btn btn-light btn-cat w-100">
                                     <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="croissant">
                                     croissants
                                 </button>
                             </div>
 
                             <div class="col-6">
-                                <button type="submit" name="categoria" value="rejillas" class="btn btn-light btn-cat w-100">
+                                <button type="submit" name="accion" value="rejillas" class="btn btn-light btn-cat w-100">
                                     <img src="/tienda/Img/categorias/cat-medialunas.png" class="img-fluid" alt="rejillas">
                                     rejillas
                                 </button>
@@ -138,8 +138,8 @@ $cantcol = 6;
                 </div>
             </div>
 
-            <div class="col-8">
-                <div class="row">
+            <div class="col-8 bg-secondary border">
+                <div class="row ">
                     <?php
                     function gen_tarjeta($img, $titulo, $desc)
                     {
@@ -168,15 +168,10 @@ $cantcol = 6;
                     $tittle = 'mi titulo';
                     $descrip = 'una descripcion cualquiera';
 
-                    //CONSULTA A BASE DE DATOS
-
-
-                    // $imagen, $titulo, $descripcion, $precio, $stock
-
 
                     function  gen_categorias($conex)
                     {
-
+                        //DUDA SI VA O NO
                         $sql = "SELECT id_producto, producto, stock FROM productos";
                         $resultado = $conex->query($sql);
                         if ($resultado->num_rows > 0) {
@@ -192,8 +187,67 @@ $cantcol = 6;
                         echo "Función ejecutada en la misma página.";
                     }
 
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'guardar') {
-                        gen_categorias($conex);
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'medialunas') {
+
+                        $sql = "SELECT * FROM productos WHERE tipo = 'medialunas'";;
+                        $resultado = $conex->query($sql);
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                #echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] . "- cantidad: " . $fila["stock"] . "<br>";
+
+                                gen_tarjeta('Img/productos/bolsa-medialunas2.jpeg', $fila["producto"], $fila["stock"]);
+                            }
+                        } else {
+                            echo "sin resultados";
+                        }
+                    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'tortas') {
+                        $sql = "SELECT * FROM productos WHERE tipo = 'tortas'";;
+                        $resultado = $conex->query($sql);
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                #echo "ID: " . $fila["id_producto"] . " - producto: " . $fila["producto"] . "- cantidad: " . $fila["stock"] . "<br>";
+
+                                gen_tarjeta('Img/productos/bolsa-medialunas2.jpeg', $fila["producto"], $fila["stock"]);
+                            }
+                        } else {
+                            echo "sin resultados";
+                        }
+                    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'sacramentos') {
+                        $sql = "SELECT * FROM productos WHERE tipo = 'sacramentos'";
+
+                        $resultado = $conex->query($sql);
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+
+                                gen_tarjeta('Img/productos/bolsa-medialunas2.jpeg', $fila["producto"], $fila["stock"]);
+                            }
+                        } else {
+                            echo "sin resultados";
+                        }
+                    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'croissants') {
+                        $sql = "SELECT * FROM productos WHERE tipo = 'croissants'";
+
+                        $resultado = $conex->query($sql);
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+
+                                gen_tarjeta('Img/productos/bolsa-medialunas2.jpeg', $fila["producto"], $fila["stock"]);
+                            }
+                        } else {
+                            echo "sin resultados";
+                        }
+                    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'rejillas') {
+                        $sql = "SELECT * FROM productos WHERE tipo = 'rejillas'";
+
+                        $resultado = $conex->query($sql);
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+
+                                gen_tarjeta('Img/productos/bolsa-medialunas2.jpeg', $fila["producto"], $fila["stock"]);
+                            }
+                        } else {
+                            echo "sin resultados";
+                        }
                     }
 
 
