@@ -123,7 +123,7 @@ $cantcol = 6;
 
                     if ($resultado) {
                         $fila = mysqli_fetch_assoc($resultado);
-                        echo 'cantidad: ' . $fila['total'];
+                        echo 'cantidad de productos: ' . $fila['total'];
                     } else {
                         echo "Error en la consulta: " . mysqli_error($conex);
                     }
